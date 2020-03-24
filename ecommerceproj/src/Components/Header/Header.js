@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import './header.css';
-import { addToCart, updateUser, getCartItem } from '../../redux/actions/actionCreators';
-import { getCartItems } from '../../services/cart.services';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HamDropdown from '../HamDropDown/HamDropDown';
+import { Link } from 'react-router-dom';
 import shoppingBag from '../../images/bag-icon.svg';
 import hamMenu from '../../images/hamMenu.png';
+import { addToCart, getCartItem, updateUser } from '../../redux/actions/actionCreators';
+import { getCartItems } from '../../services/cart.services';
+import HamDropdown from '../HamDropDown/HamDropDown';
+import './header.css';
 
 class Header extends Component {
     constructor(props) {
@@ -96,7 +96,8 @@ class Header extends Component {
                     </div>
                     <div className="login-register-wrap">
                         <div className={!this.state.loggedIn ? 'login-regi-true' : 'login-regi-false'}>
-                            <a href={process.env.REACT_APP_LOGIN}> Login </a>
+
+                            <Link to='/login'> Login </Link>
                             <Link to='/register'> Register </Link>
                         </div>
                         <div className={this.state.loggedIn ? 'logout-account-true' : 'logout-account-false'}>
@@ -109,7 +110,7 @@ class Header extends Component {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }

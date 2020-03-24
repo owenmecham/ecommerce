@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 import './login.css';
 
 class Login extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
 
@@ -14,14 +14,14 @@ class Login extends Component {
 
 
 
-    render(){
-        return(
+    render() {
+        return (
             <div className='login-wrap'>
                 <div className='login-body'>
                     <div className='login'>
                         <h1>Login</h1>
-                        <input placeholder='Email'/>
-                        <input placeholder='Password' type='password'/>
+                        <input placeholder='Email' />
+                        <input placeholder='Password' type='password' />
                         <div className='login-buttons'>
                             <button className='login-btn'>LOGIN</button>
                             <Link to='/'><button className='cancel-btn'>CANCEL</button></Link>

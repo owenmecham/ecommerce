@@ -1,38 +1,39 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateUser } from './redux/actions/actionCreators';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import './App.css';
-import Header from './Components/Header/Header';
-
-
-import Home from './Components/Home/Home';
 import About from './Components/About/About';
-import Contact from './Components/Contact/Contact';
-import Register from './Components/Register/Register';
-import Logout from './Components/Logout/Logout';
-
-import Dashboard from './Components/Account/Dashboard/Dashboard';
 import ChangeInfo from './Components/Account/ChangeInfo/ChangeInfo';
+import Dashboard from './Components/Account/Dashboard/Dashboard';
 import OrderHistory from './Components/Account/OrderHistory/OrderHistory';
 import SingleOrder from './Components/Account/SingleOrder/SingleOrder';
-
-import ShoppingBag from './Components/ShoppingBag/ShoppingBag';
 import Checkout from './Components/Checkout/Checkout';
+import Contact from './Components/Contact/Contact';
+import Header from './Components/Header/Header';
+import Home from './Components/Home/Home';
+import Login from './Components/Login/Login';
+import Logout from './Components/Logout/Logout';
 import OrderReview from './Components/OrderReview/OrderReview';
-import Thanks from './Components/Thanks/Thanks';
-
-import Products from './Components/Products/Products';
-import LePetite from './Components/Products/LePetite/LePetite';
-import HalfPound from './Components/Products/HalfPound/HalfPound';
-import OnePound from './Components/Products/OnePound/OnePound';
-import TwoPound from './Components/Products/TwoPound/TwoPound';
-import RockyRoad from './Components/Products/RockyRoad/RockyRoad';
-import PretzelRod from './Components/Products/PretzelRod/PretzelRod';
-import Lollipop from './Components/Products/Lollipop/Lollipop';
-import Oreos from './Components/Products/Oreos/Oreos';
 import Caramels from './Components/Products/Caramels/Caramels';
+import HalfPound from './Components/Products/HalfPound/HalfPound';
+import LePetite from './Components/Products/LePetite/LePetite';
 import Licorice from './Components/Products/Licorice/Licorice';
+import Lollipop from './Components/Products/Lollipop/Lollipop';
+import OnePound from './Components/Products/OnePound/OnePound';
+import Oreos from './Components/Products/Oreos/Oreos';
+import PretzelRod from './Components/Products/PretzelRod/PretzelRod';
+import Products from './Components/Products/Products';
+import RockyRoad from './Components/Products/RockyRoad/RockyRoad';
+import TwoPound from './Components/Products/TwoPound/TwoPound';
+import Register from './Components/Register/Register';
+import ShoppingBag from './Components/ShoppingBag/ShoppingBag';
+import Thanks from './Components/Thanks/Thanks';
+import { updateUser } from './redux/actions/actionCreators';
+
+
+
+
+
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class App extends Component {
           <Route path='/about' component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/register' component={Register} />
+          <Route path='/login' component={Login} />
           <Route path='/logout' component={Logout} />
 
           <Route path='/dashboard' component={Dashboard} />
