@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import Footer from '../../Footer/Footer';
-import LePetiteChocolates from '../ChocolatesInBox/LePetiteChocolates';
+import { connect } from 'react-redux';
+import LePetiteBox from '../../../images/lePetite.jpg';
+import { addToCart, getCartItem, updateUser } from '../../../redux/actions/actionCreators';
 import { createCartItems, getCartItems } from '../../../services/cart.services';
 import { getProduct } from '../../../services/products.service';
-import { addToCart, updateUser, getCartItem } from '../../../redux/actions/actionCreators'
-import { connect } from 'react-redux';
-
-import LePetiteBox from '../../../images/lePetite.jpg';
+import Footer from '../../Footer/Footer';
 import '../chocolates.css';
+import LePetiteChocolates from '../ChocolatesInBox/LePetiteChocolates';
+
 
 class LePetite extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             product_id: '',
@@ -22,10 +22,10 @@ class LePetite extends Component {
         this.handleQtyChange = this.handleQtyChange.bind(this);
     }
 
-    componentWillMount(){
+    componentWillMount() {
         let productid = this.props.match.params.productid;
         getProduct(productid)
-            .then( res => {
+            .then(res => {
                 let productInfo = res.data[0];
                 console.log(res.data[0]);
                 this.setState({
@@ -33,41 +33,42 @@ class LePetite extends Component {
                     name: productInfo.name,
                     price: productInfo.price
                 });
-          })
+            })
     }
 
-    handleAddToBag(){
-        if(this.props.userInfo.id){
+    handleAddToBag() {
+        if (this.props.userInfo.id) {
             let user_id = this.props.userInfo.id;
             const { product_id, quantity } = this.state;
-            const reqBody = {user_id, product_id, quantity};
+            const reqBody = { user_id, product_id, quantity };
             createCartItems(reqBody)
-                .then( res => {
+                .then(res => {
                     getCartItems(user_id)
-                        .then( res => {
+                        .then(res => {
                             console.log(res.data);
                             this.props.getCartItem(res.data);
                         })
                 })
-                .catch( err => {throw err})
+                .catch(err => { throw err })
         }
         else {
+            console.log(this.state);
             this.props.addToCart(this.state);
         }
     }
 
-    handleQtyChange(e){
+    handleQtyChange(e) {
         let newState = this.state.qty;
         newState = Number(e.target.value);
         this.setState({ quantity: newState })
         console.log(e.target.value);
     }
 
-    render(){
+    render() {
         console.log(this.state);
         console.log(this.props.cartReducer);
         console.log(this.props.cartItem);
-        return(
+        return (
             <div className='wrapper'>
                 <div className='product-body'>
                     <div className='product-info'>
@@ -75,7 +76,7 @@ class LePetite extends Component {
                             <h1>Le Petite Box</h1>
                             <div className='product-add'>
                                 <button onClick={this.handleAddToBag}>Add To Cart</button>
-                                <input placeholder='1' name='qty' onChange={ e => {this.handleQtyChange(e) }}/>
+                                <input placeholder='1' name='qty' onChange={e => { this.handleQtyChange(e) }} />
                                 <h3>$4.95</h3>
                             </div>
                             <p>
@@ -92,7 +93,7 @@ class LePetite extends Component {
                             </div>
                         </div>
                         <div className='product-picture'>
-                            <img src={LePetiteBox} alt='box of chocolates'/>
+                            <img src={LePetiteBox} alt='box of chocolates' />
                         </div>
                     </div>
                     <LePetiteChocolates />
@@ -103,8 +104,8 @@ class LePetite extends Component {
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return state;
 }
 
-export default connect(mapStateToProps, {addToCart, updateUser, getCartItem}) (LePetite);
+export default connect(mapStateToProps, { addToCart, updateUser, getCartItem })(LePetite);
